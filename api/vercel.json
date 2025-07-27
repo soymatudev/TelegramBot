@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "routes": [
+    {
+      "src": "/api/bot",
+      "methods": ["POST"],
+      "dest": "/api/bot.js"
+    }
+  ]
+}

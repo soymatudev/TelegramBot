@@ -1,5 +1,5 @@
 <?php
-$url = "https://telegram-bot-seven-pi.vercel.app/TelegramBot/Boty01.php";
+$url = "https://telegram-bot-seven-pi.vercel.app/TelegramBot/public/Boty01.php";
 
 $data = [
     "update_id" => 123456789,
@@ -32,8 +32,12 @@ $options = [
 
 $ch = curl_init();
 curl_setopt_array($ch, $options);
+curl_setopt($ch, CURLOPT_HTTPHEADER, [
+    "Content-Type: application/json",
+    "User-Agent: Mozilla/5.0"
+]);
 $response = curl_exec($ch);
 curl_close($ch);
 
-echo __LINE__ . "Respuesta del bot: " . $response;
+echo __LINE__ . " Respuesta del bot: " . $response;
 ?>
