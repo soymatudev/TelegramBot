@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>En construcción</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      height: 100vh;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 500px;
+      padding: 20px;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(6px);
+    }
+
+    h1 {
+      font-size: 2.2em;
+      margin-bottom: 0.5em;
+    }
+
+    p {
+      font-size: 1.2em;
+      color: #e0e0e0;
+    }
+
+    .small {
+      margin-top: 20px;
+      font-size: 0.85em;
+      color: #ccc;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🚧 Sitio en construcción 🚧</h1>
+    <p>Estamos trabajando en esta página.<br>Por ahora, todo está en pruebas.</p>
+    <div class="small">
+      <?php
+        echo "Fecha actual: " . date("d/m/Y") . " &middot; Hora: " . date("H:i:s");
+      ?>
+    </div>
+  </div>
+</body>
+</html>
