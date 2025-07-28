@@ -5,6 +5,11 @@
       "src": "/api/bot",
       "methods": ["POST"],
       "dest": "/api/bot.js"
+    },
+    {
+      "src": "/api/send",
+      "methods": ["POST"],
+      "dest": "/api/send.js"
     }
   ]
 }

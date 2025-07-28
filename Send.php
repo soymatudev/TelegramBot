@@ -1,5 +1,5 @@
 <?php
-$url = "https://telegram-bot-seven-pi.vercel.app/TelegramBot/public/Boty01.php";
+$url = "https://telegram-bot-seven-pi.vercel.app/TelegramBot/api/bot.js";
 
 $data = [
     "update_id" => 123456789,
