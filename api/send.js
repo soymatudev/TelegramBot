@@ -11,7 +11,7 @@ export default async function handler(req, res) {
       .json({ error: "Faltan parámetros: chat_id y message" });
   }
 
-  const BOT_TOKEN = "AQUI_TU_TOKEN_DEL_BOT";
+  const BOT_TOKEN = "8024363859:AAE0AI1EXq7jGcrjeih170mPgEsd60Xg8vo";
   const TELEGRAM_API = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
 
   try {
