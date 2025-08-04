@@ -1,4 +1,4 @@
-import Bridge from "Bridge";
+import Bridge from "./Bridge.js";
 
 export default async function handler(req, res) {
   try {
