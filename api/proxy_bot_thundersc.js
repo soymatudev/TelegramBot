@@ -1,26 +1,28 @@
 import Bridge from "Bridge";
 
 export default async function handler(req, res) {
-  // Solo aceptar POST
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Método no permitido" });
   }
 
+  const uu = "bot_telegram";
+  const cc = "pcz"; // Ajusta con el valor real
   const body = req.body;
 
-  let bridge = new Bridge(uu, cc, "APIService", req.body);
-  let response = await bridge.databriged();
+  try {
+    let bridge = new Bridge(uu, cc, "APIService", body);
+    const response = await bridge.databriged();
+    const data = await response.json();
 
-  response
-    .then((response) => response.json())
-    .then((data) => {
-      if (data.event > 0) {
-        alert("Error: " + data.result);
-      } else {
-      }
-    });
+    if (data.event > 0) {
+      console.log("Error desde API:", data.result);
+    } else {
+      console.log("Respuesta exitosa:", data.result);
+    }
+  } catch (error) {
+    console.error("Error general en proxy:", error);
+  }
 
-  // Retornar éxito
-  //res.status(200).json({ ok: true });
+  // Siempre responder a Telegram
   return res.status(200).json({ ok: true });
 }
