@@ -10,7 +10,7 @@ export default async function handler(req, res) {
     const cc = "pcz"; // Ajusta a lo que corresponda
     const body = req.body;
 
-    let bridge = new Bridge(uu, cc, "APIService", body);
+    let bridge = new Bridge(uu, cc, "API_bot.APIService", body);
     const response = await bridge.databriged();
 
     if (!response) {
