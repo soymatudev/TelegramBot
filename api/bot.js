@@ -1,3 +1,6 @@
+import Bridge from "Bridge";
+import Ping from "Ping";
+
 export default async function handler(req, res) {
   // Solo aceptar POST
   if (req.method !== "POST") {
@@ -31,4 +34,36 @@ export default async function handler(req, res) {
   res.status(200).json({ ok: true });
 }
 
+function get() {
+  
+}
+
+function getInfo() {
+  let bridge = new Bridge(uu, cc, "System.Dashboard.Sensores.SensoresTempService.getDataLines", []);
+  let response = bridge.databriged();
+  response
+    .then(response => response.json())
+    .then((data) => {
+      if(data.event > 0) {
+        Swal.fire({
+          icon: "error",
+          title: "Error",
+          text: data.result,
+        })
+      } else {
+        data = data.result;
+      }
+    });
+}
+
 // curl -X GET "https://api.telegram.org/bot8024363859:AAE0AI1EXq7jGcrjeih170mPgEsd60Xg8vo/setWebhook?url=https://telegram-bot-seven-pi.vercel.app/api/bot"
+// curl -X GET "https://api.telegram.org/bot8024363859:AAE0AI1EXq7jGcrjeih170mPgEsd60Xg8vo/deleteWebhook?url=https://telegram-bot-seven-pi.vercel.app/api/bot"
+
+
+// http://nexthwd.pcz.com.mx:4480/thundersc/thunder/admin/Login/Login.php
+
+
+// curl -X GET "https://api.telegram.org/bot8024363859:AAE0AI1EXq7jGcrjeih170mPgEsd60Xg8vo/setWebhook?url=http://nexthwd.pcz.com.mx:4480/thundersc/thundercloud/API_bot/APIService.php"
+
+
+// curl -X GET "https://api.telegram.org/bot8024363859:AAE0AI1EXq7jGcrjeih170mPgEsd60Xg8vo/setWebhook?url=https://telegram-bot-seven-pi.vercel.app/api/proxy_bot_thundersc"
