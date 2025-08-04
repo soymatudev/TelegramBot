@@ -9,7 +9,7 @@ export default async function handler(req, res) {
   const body = req.body;
 
   let bridge = new Bridge(uu, cc, "APIService", req.body);
-  let response = bridge.databriged();
+  let response = await bridge.databriged();
 
   response
     .then((response) => response.json())
@@ -22,4 +22,5 @@ export default async function handler(req, res) {
 
   // Retornar éxito
   //res.status(200).json({ ok: true });
+  return res.status(200).json({ ok: true });
 }
