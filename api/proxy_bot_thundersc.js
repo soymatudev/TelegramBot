@@ -14,13 +14,17 @@ class Bridge{
   async databriged(){
       try {
           console.log("Haciendo solicitud a:", this.#url);
+
+          const controller = new AbortController();
+          const timeout = setTimeout(() => controller.abort(), 5000); // 5 segundos
+
           const response = await fetch(this.#url, {
               method: "POST",
               headers: this.#header,
               body: this.paramsFormat(),
+              signal: controller.signal
           });
-
-          console.log("Haciendo solicitud a:", this.#url);
+          clearTimeout(timeout); // Limpiar el timeout si la solicitud fue exitosa
 
           if (response.status === 500) {
               throw new Error("Error interno del servidor");
@@ -29,7 +33,7 @@ class Bridge{
           } else if (!response.ok) {
               throw new Error(`HTTP error! Status: ${response.status}`);
           }
-          //const contentType = response.headers.get("Content-Type");
+
           return response;
       } catch (error) {
           console.log(error);
@@ -81,7 +85,7 @@ export default async function handler(req, res) {
     const uu = "bot_telegram";
     const cc = "pcz"; // Ajusta a lo que corresponda
 
-    const cleanBody = JSON.parse(JSON.stringify(req.body));
+    const cleanBody = JSON.parse(JSON.stringify(req.body, null, 2));
     console.log("Cuerpo limpio recibido:", cleanBody);
 
     let bridge = new Bridge(uu, cc, "API_bot.APIService.API", cleanBody);
@@ -96,10 +100,11 @@ export default async function handler(req, res) {
 
     if(data.event > 0) {
       console.log("Error desde API:", data.result);
+      return res.status(500).json({ error: data.result });
     } else {
       console.log("Respuesta exitosa:", "simon");
     }
-    console.log("Saliendo de la función handler");
+
     return res.status(200).json({ ok: true });
   } catch (error) {
     console.error("Error en webhook:", error);
