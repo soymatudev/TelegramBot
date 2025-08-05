@@ -86,19 +86,21 @@ export default async function handler(req, res) {
 
     let bridge = new Bridge(uu, cc, "API_bot.APIService.API", cleanBody);
     let response = await bridge.databriged();
-    response
-      .then(response => response.json())
-      .then((data) => {
-        if(data.event > 0) {
-          console.log("Error desde API:", data.result);
-        } else {
-          console.log("Respuesta exitosa:", "simon");
-        }
-        console.log("Saliendo de la función handler");
-        return res.status(200).json({ ok: true });
-      });
 
-      return res.status(200).json({ ok: true });
+    if (!response) {
+      console.error("No hubo respuesta del servidor");
+      return res.status(502).json({ error: "Sin respuesta del servidor destino" });
+    }
+
+    const data = await response.json();
+
+    if(data.event > 0) {
+      console.log("Error desde API:", data.result);
+    } else {
+      console.log("Respuesta exitosa:", "simon");
+    }
+    console.log("Saliendo de la función handler");
+    return res.status(200).json({ ok: true });
   } catch (error) {
     console.error("Error en webhook:", error);
     return res.status(500).json({ error: "Falla interna del servidor" });
