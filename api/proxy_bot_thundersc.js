@@ -88,7 +88,7 @@ export default async function handler(req, res) {
     const cleanBody = JSON.parse(JSON.stringify(req.body, null, 2));
     console.log("Cuerpo limpio recibido:", cleanBody);
 
-
+    return res.status(200).json({ ok: true });
     if (!cleanBody || Object.keys(cleanBody).length === 0) {
       console.error("Cuerpo vacío o inválido recibido");
       return res.status(400).json({ error: "Cuerpo vacío o inválido" });
