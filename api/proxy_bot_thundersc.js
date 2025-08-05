@@ -19,6 +19,8 @@ class Bridge{
               body: this.paramsFormat(),
           });
 
+          console.log("Haciendo solicitud a:", this.#url);
+
           if (response.status === 500) {
               throw new Error("Error interno del servidor");
           } else if (response.status === 400) {
@@ -77,9 +79,10 @@ export default async function handler(req, res) {
 
     const uu = "bot_telegram";
     const cc = "pcz"; // Ajusta a lo que corresponda
-    //const body = req.body;
+
     const cleanBody = JSON.parse(JSON.stringify(req.body));
     console.log("Cuerpo limpio recibido:", cleanBody);
+
     let bridge = new Bridge(uu, cc, "API_bot.APIService.API", cleanBody);
     let response = bridge.databriged();
     response
