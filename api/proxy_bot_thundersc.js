@@ -13,6 +13,7 @@ class Bridge{
 
   async databriged(){
       try {
+          console.log("Haciendo solicitud a:", this.#url);
           const response = await fetch(this.#url, {
               method: "POST",
               headers: this.#header,
@@ -81,7 +82,7 @@ export default async function handler(req, res) {
     const cc = "pcz"; // Ajusta a lo que corresponda
 
     const cleanBody = JSON.parse(JSON.stringify(req.body));
-    //console.log("Cuerpo limpio recibido:", cleanBody);
+    console.log("Cuerpo limpio recibido:", cleanBody);
 
     let bridge = new Bridge(uu, cc, "API_bot.APIService.API", cleanBody);
     let response = bridge.databriged();
