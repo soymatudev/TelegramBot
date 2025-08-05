@@ -8,24 +8,22 @@ export default async function handler(req, res) {
 
     const uu = "bot_telegram";
     const cc = "pcz"; // Ajusta a lo que corresponda
-    const body = req.body;
+    //const body = req.body;
 
-    let bridge = new Bridge(uu, cc, "API_bot.APIService.API", body);
-    const response = await bridge.databriged();
+    let bridge = new Bridge(uu, cc, "API_bot.APIService.API", req);
+    let response = bridge.databriged();
+    response
+      .then(response => response.json())
+      .then((data) => {
+        if(data.event > 0) {
+          console.log("Error desde API:", data.result);
+        } else {
+          console.log("Respuesta exitosa:", "simon");
+        }
+        return res.status(200).json({ ok: true });
+      });
 
-    if (!response) {
-      throw new Error("No hubo respuesta del servidor");
-    }
-
-    const data = await response.json();
-
-    if (data.event > 0) {
-      console.log("Error desde API:", data.result);
-    } else {
-      console.log("Respuesta exitosa:", data.result);
-    }
-
-    return res.status(200).json({ ok: true });
+    
   } catch (error) {
     console.error("Error en webhook:", error);
     return res.status(500).json({ error: "Falla interna del servidor" });
