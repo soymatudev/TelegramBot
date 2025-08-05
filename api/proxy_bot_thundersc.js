@@ -78,8 +78,8 @@ export default async function handler(req, res) {
     const uu = "bot_telegram";
     const cc = "pcz"; // Ajusta a lo que corresponda
     //const body = req.body;
-
-    let bridge = new Bridge(uu, cc, "API_bot.APIService.API", req);
+    const cleanBody = JSON.parse(JSON.stringify(req.body));
+    let bridge = new Bridge(uu, cc, "API_bot.APIService.API", cleanBody);
     let response = bridge.databriged();
     response
       .then(response => response.json())
