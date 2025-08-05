@@ -79,6 +79,7 @@ export default async function handler(req, res) {
     const cc = "pcz"; // Ajusta a lo que corresponda
     //const body = req.body;
     const cleanBody = JSON.parse(JSON.stringify(req.body));
+    console.log("Cuerpo limpio recibido:", cleanBody);
     let bridge = new Bridge(uu, cc, "API_bot.APIService.API", cleanBody);
     let response = bridge.databriged();
     response
