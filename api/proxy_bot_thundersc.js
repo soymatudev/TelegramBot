@@ -114,6 +114,6 @@ export default async function handler(req, res) {
     return res.status(200).json({ ok: true });
   } catch (error) {
     console.error("Error en webhook:", error);
-    return res.status(500).json({ error: "Falla interna del servidor" });
+    return res.status(200).json({ error: "Falla interna del servidor" });
   }
 }
