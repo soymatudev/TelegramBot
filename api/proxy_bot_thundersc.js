@@ -30,6 +30,7 @@ class Bridge{
           return response;
       } catch (error) {
           console.log(error);
+          throw new Error("Error al realizar la solicitud: " + error.message);
       }
   } 
 
@@ -88,6 +89,7 @@ export default async function handler(req, res) {
         } else {
           console.log("Respuesta exitosa:", "simon");
         }
+        console.log("Saliendo de la función handler");
         return res.status(200).json({ ok: true });
       });
 
