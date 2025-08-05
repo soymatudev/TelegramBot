@@ -88,6 +88,12 @@ export default async function handler(req, res) {
     const cleanBody = JSON.parse(JSON.stringify(req.body, null, 2));
     console.log("Cuerpo limpio recibido:", cleanBody);
 
+
+    if (cleanBody.text == "Just") {
+      console.log("Mensaje 'Just' recibido, ignorando...");
+      return res.status(200).json({ ok: true });
+    }
+
     let bridge = new Bridge(uu, cc, "API_bot.APIService.API", cleanBody);
     let response = await bridge.databriged();
 
