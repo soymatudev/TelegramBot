@@ -89,7 +89,10 @@ export default async function handler(req, res) {
     console.log("Cuerpo limpio recibido:", cleanBody);
 
 
-    return res.status(200).json({ ok: true });
+    if (!cleanBody || Object.keys(cleanBody).length === 0) {
+      console.error("Cuerpo vacío o inválido recibido");
+      return res.status(400).json({ error: "Cuerpo vacío o inválido" });
+    }
 
     let bridge = new Bridge(uu, cc, "API_bot.APIService.API", cleanBody);
     let response = await bridge.databriged();
