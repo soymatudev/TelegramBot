@@ -85,7 +85,7 @@ export default async function handler(req, res) {
     console.log("Cuerpo limpio recibido:", cleanBody);
 
     let bridge = new Bridge(uu, cc, "API_bot.APIService.API", cleanBody);
-    let response = bridge.databriged();
+    let response = await bridge.databriged();
     response
       .then(response => response.json())
       .then((data) => {
@@ -93,6 +93,7 @@ export default async function handler(req, res) {
           console.log("Error desde API:", data.result);
         } else {
           console.log("Respuesta exitosa:", "simon");
+          data = data.result;
         }
         console.log("Saliendo de la función handler");
         return res.status(200).json({ ok: true });
