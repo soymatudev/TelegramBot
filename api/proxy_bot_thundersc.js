@@ -102,6 +102,9 @@ export default async function handler(req, res) {
       return res.status(502).json({ error: "Sin respuesta del servidor destino" });
     }
 
+    console.log("Respuesta recibida del servidor");
+    console.log(response);
+    
     const data = await response.json();
 
     if(data.event > 0) {
