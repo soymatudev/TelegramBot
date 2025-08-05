@@ -82,19 +82,10 @@ export default async function handler(req, res) {
       return res.status(405).json({ error: "Método no permitido" });
     }
 
-    const uu = "bot_telegram";
-    const cc = "pcz"; // Ajusta a lo que corresponda
-
     const cleanBody = JSON.parse(JSON.stringify(req.body, null, 2));
     console.log("Cuerpo limpio recibido:", cleanBody);
 
-
-    if (!cleanBody || Object.keys(cleanBody).length === 0) {
-      console.error("Cuerpo vacío o inválido recibido");
-      return res.status(400).json({ error: "Cuerpo vacío o inválido" });
-    }
-
-    let bridge = new Bridge(uu, cc, "API_bot.APIService.API", cleanBody);
+    let bridge = new Bridge("bot_telegram", "pcz", "API_bot.APIService.API", cleanBody);
     let response = await bridge.databriged();
 
     if (!response) {
@@ -105,14 +96,14 @@ export default async function handler(req, res) {
     console.log("Respuesta recibida del servidor");
     console.log(response);
     
-    const data = await response.json();
+    /* const data = await response.json();
 
     if(data.event > 0) {
       console.log("Error desde API:", data.result);
       return res.status(500).json({ error: data.result });
     } else {
       console.log("Respuesta exitosa:", "simon");
-    }
+    } */
 
     return res.status(200).json({ ok: true });
   } catch (error) {
