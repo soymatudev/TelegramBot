@@ -85,7 +85,7 @@ export default async function handler(req, res) {
     const cleanBody = JSON.parse(JSON.stringify(req.body, null, 2));
     console.log("Cuerpo limpio recibido:", cleanBody);
 
-    let bridge = new Bridge("bot_telegram", "pcz", "API_bot.APIService.API", cleanBody);
+    let bridge = new Bridge("bot_telegram", "pcz", "APIBot.APIService.API", cleanBody);
     let response = await bridge.databriged();
 
     if (!response) {
