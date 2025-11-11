@@ -56,7 +56,7 @@ class Bridge{
       // Ejemplo: System.Inventario.Catalogos.Articulos.getArticulos
       let url = this.#url.split(".");
       this.#ff = url.pop();
-      this.#url = "http://nexthwd.pcz.com.mx:4480/thundersc/thundercloud/" + url.join("/") + ".php";
+      this.#url = "https://nexthwd.pcz.com.mx/thundersc/thundercloud/" + url.join("/") + ".php";
   }
 
   async downloadEvent(response) {
